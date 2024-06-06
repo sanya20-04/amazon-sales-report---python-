@@ -16,3 +16,97 @@ pd.isnull(df)
 # checking null value 
 pd.isnull(df).sum()
 # sum will give total values of null values
+#drop null values
+df.dropna(inplace=True)
+#use describe() for specific columns
+df[['Qty','Amount']].describe()
+#Exploratory Data Analysis
+ax=sns.countplot(x='Size' ,data=df)
+ax=sns.countplot(x='Size' ,data=df)
+
+for bars in ax.containers:
+    ax.bar_label(bars)
+
+df.groupby(['Size'], as_index=False)['Qty'].sum().sort_values(by='Qty',ascending=False)
+
+S_Qty=df.groupby(['Size'], as_index=False)['Qty'].sum().sort_values(by='Qty',ascending=False)
+
+sns.barplot(x='Size',y='Qty', data=S_Qty)
+sns.countplot(data=df, x='Courier Status',hue= 'Status')
+plt.figure(figsize=(10,5))
+
+ax=sns.countplot(data=df, x='Courier Status',hue= 'Status')
+
+plt.show()
+df['Category'] = df['Category'].astype(str)
+column_data = df['Category']
+plt.figure(figsize=(10, 5))
+plt.hist(column_data, bins=30, edgecolor='Black')
+plt.xticks(rotation=90)
+plt.show()
+
+# Checking B2B Data  by using pie chart 
+B2B_Check = df['B2B'].value_counts()
+
+#  Plot the pie chart
+plt.pie(B2B_Check, labels=B2B_Check, autopct='%1.1f%%')
+#plt.axis('equal')
+plt.show()
+
+# Checking B2B Data  by using pie chart 
+B2B_Check = df['B2B'].value_counts()
+
+#  Plot the pie chart
+plt.pie(B2B_Check, labels=B2B_Check.index, autopct='%1.1f%%')
+#plt.axis('equal')
+plt.show()
+
+#  Prepare data for pie chart
+a1 = df['Fulfilment'].value_counts()
+
+# Step 4: Plot the pie chart
+fig, ax = plt.subplots()
+
+ax.pie(a1, labels=a1.index, autopct='%1.1f%%', radius=0.7, wedgeprops=dict(width=0.6))
+ax.set(aspect="equal")
+
+plt.show()
+
+# Prepare data for scatter plot
+x_data = df['Category']  
+y_data = df['Size'] 
+
+# Plot the scatter plot
+plt.scatter(x_data, y_data)
+plt.xlabel('Category ')  
+plt.ylabel('Size')  
+plt.title('Scatter Plot') 
+plt.show()
+
+
+# Plot count of cities by state
+plt.figure(figsize=(12, 6))
+sns.countplot(data=df, x='ship-state')# top_10_States 
+top_10_state = df['ship-state'].value_counts().head(10)
+# Plot count of cities by state
+plt.figure(figsize=(12, 6))
+sns.countplot(data=df[df['ship-state'].isin(top_10_state.index)], x='ship-state')
+plt.xlabel('ship-state')
+plt.ylabel('count')
+plt.title('Distribution of  State')
+plt.xticks(rotation=45)
+plt.show()
+plt.xlabel('ship-state')
+plt.ylabel('count')
+plt.title('Distribution of State')
+plt.xticks(rotation=90)
+plt.show()
+
+
+
+
+#histogram 
+df['Size'].hist() 
+
+
+#### The data analysis reveals that the business has a significant customer base in Maharashtra state, mainly serves retailers, fulfills orders through Amazon, experiences high demand for T-shirts, and sees M-Size as the preferred choice among buyers.
