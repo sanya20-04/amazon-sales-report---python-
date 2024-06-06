@@ -1,0 +1,18 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt 
+%matplotlib inline
+import seaborn as sns
+
+df=pd.read_csv('Amazon Sale Report.csv',encoding= 'unicode_escape')
+
+df.shape()
+df.head()
+df.tail()
+df.info()
+#drop unrelated/blank columns
+df.drop(['New','PendingS'], axis=1, inplace=True)
+pd.isnull(df) 
+# checking null value 
+pd.isnull(df).sum()
+# sum will give total values of null values
